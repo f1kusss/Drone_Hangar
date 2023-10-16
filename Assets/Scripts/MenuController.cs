@@ -29,7 +29,7 @@ public class MenuController : MonoBehaviour
         head = MainCam.GetComponent<Vrs.Internal.VrsHead>();
         prevCamPos = MainCam.transform.position;
         preCamOrient = MainCam.transform.rotation;
-        //switchFPV();
+        switchFPV();
     }
 
     void Update()
