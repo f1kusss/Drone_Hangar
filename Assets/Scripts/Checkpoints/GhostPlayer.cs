@@ -13,7 +13,7 @@ public class GhostPlayer : MonoBehaviour
     private void Awake()
     {
         timeValue = 0;
-    }
+	}
 
 
     // Update is called once per frame
@@ -29,23 +29,23 @@ public class GhostPlayer : MonoBehaviour
 
     private void GetIndex()
     {
-        for (int i = 0; i < ghost.timeSlap.Count - 2; i++)
+        for (int i = 0; i < ghost.timeSlap2.Count - 2; i++)
         {
-            if (ghost.timeSlap[i] == timeValue)
+            if (ghost.timeSlap2[i] == timeValue)
             {
                 index1 = i;
                 index2 = i;
                 return;
             }
-            else if (ghost.timeSlap[i] < timeValue & timeValue < ghost.timeSlap[i + 1])
+            else if (ghost.timeSlap2[i] < timeValue & timeValue < ghost.timeSlap2[i + 1])
             {
                 index1 = i;
                 index2 = i + 1;
                 return;
             }
 
-            index1 = ghost.timeSlap.Count - 1;
-            index2 = ghost.timeSlap.Count - 1;
+            index1 = ghost.timeSlap2.Count - 1;
+            index2 = ghost.timeSlap2.Count - 1;
         }
     }
 
@@ -53,17 +53,17 @@ public class GhostPlayer : MonoBehaviour
     {
         if (index1 == index2)
         {
-            this.transform.position = ghost.position[index1];
-            this.transform.eulerAngles = ghost.rotation[index1];
+            this.transform.position = ghost.position2[index1];
+            this.transform.eulerAngles = ghost.rotation2[index1];
         }
         else
         {
             float interpolationFactor =
-                (timeValue - ghost.timeSlap[index1]) / (ghost.timeSlap[index2] - ghost.timeSlap[index1]);
+                (timeValue - ghost.timeSlap2[index1]) / (ghost.timeSlap2[index2] - ghost.timeSlap2[index1]);
 
-            this.transform.position = Vector3.Lerp(ghost.position[index1], ghost.position[index2], interpolationFactor);
+            this.transform.position = Vector3.Lerp(ghost.position2[index1], ghost.position2[index2], interpolationFactor);
             this.transform.eulerAngles =
-                Vector3.Lerp(ghost.rotation[index1], ghost.rotation[index2], interpolationFactor);
+                Vector3.Lerp(ghost.rotation2[index1], ghost.rotation2[index2], interpolationFactor);
         }
     }
 }

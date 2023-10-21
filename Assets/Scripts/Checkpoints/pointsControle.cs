@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class pointsControle : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class pointsControle : MonoBehaviour
     public List<Transform> checkpoints;
     public Timer timer;
     public Save save;
+
+    public GameObject panel;
 
     void Start()
     {
@@ -21,7 +25,6 @@ public class pointsControle : MonoBehaviour
         {
             save.LoadGame();
         }
-        else ;
         foreach (Transform children in checkpointHolder)
         {
             checkpoints.Add(children);
@@ -50,15 +53,21 @@ public class pointsControle : MonoBehaviour
         checkpoints[currentCheckpointIndex].gameObject.SetActive(false);
         if (currentCheckpointIndex < checkpoints.Count - 1)
         {
-            checkpoints[++currentCheckpointIndex].gameObject.SetActive(true);
-        }
+			checkpoints[++currentCheckpointIndex].gameObject.SetActive(true);
+		}
         else
         {
-            timer.ResetStopwatch();
-            currentCheckpointIndex = 0;
-            checkpoints[currentCheckpointIndex].gameObject.SetActive(true);
-        }
+            panel.SetActive(true);
+			Time.timeScale = 0;
+		}
         
     }
+
+    public void RestartScene()
+    {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		panel.SetActive(false);
+		Time.timeScale = 1;
+	}
     
 }

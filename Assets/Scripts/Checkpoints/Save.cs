@@ -11,14 +11,14 @@ public class Save : MonoBehaviour
     }
     public void SaveGame()
     {
-        PlayerPrefs.SetFloat("SavedFloat", timer.bestTime);
+        PlayerPrefs.SetFloat("SavedFloat", timer.saveTime.bestTime);
         PlayerPrefs.Save();
         Debug.Log("Game data saved!");
     }
 
     public void LoadGame()
     {
-        timer.bestTime = PlayerPrefs.GetFloat("SavedFloat");
+        timer.saveTime.bestTime = PlayerPrefs.GetFloat("SavedFloat");
         Debug.Log("Game data loaded!");
     }
 

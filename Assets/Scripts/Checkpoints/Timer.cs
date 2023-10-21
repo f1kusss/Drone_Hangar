@@ -1,32 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    private float elapsedTime = 0f;
-    private float pointsTime = 0f;
+    public SaveTime saveTime;
     private bool isRunningPoints = false;
     private bool isRunning = false;
-    public float bestTime = 0f;
 
-    void Update()
+    public TextMeshProUGUI elapsedTimeTMPro;
+    public TextMeshProUGUI bestTimeTMPro;
+    public TextMeshProUGUI pointTimeTMPro;
+
+	private void Awake()
+	{
+        saveTime.ResetData();
+		bestTimeTMPro.text = "Время лучшего круга: " + saveTime.bestTime.ToString("F2") + "секунд";
+	}
+
+	void Update()
     {
         if (isRunning)
         {
-            elapsedTime += Time.deltaTime;
+            saveTime.elapsedTime += Time.deltaTime;
         }
 
         if (isRunningPoints)
         {
-            pointsTime += Time.deltaTime;
+            saveTime.pointsTime += Time.deltaTime;
         }
 
-        Debug.Log("Point Time: " + pointsTime.ToString("F2") + "seconds");
+        Debug.Log("Point Time: " + saveTime.pointsTime.ToString("F2") + "seconds");
+        pointTimeTMPro.text = "Время между чекпоинтами: " + saveTime.pointsTime.ToString("F2") + "секунд";
 
-        // Отображение времени
-        Debug.Log("Elapsed Time: " + elapsedTime.ToString("F2") + " seconds");
-    }
+		// Отображение времени
+		Debug.Log("Elapsed Time: " + saveTime.elapsedTime.ToString("F2") + " seconds");
+		elapsedTimeTMPro.text = "Время круга: " + saveTime.elapsedTime.ToString("F2") + "секунд";
+	}
 
     // Начать отсчет времени
     public void StartStopwatch()
@@ -46,7 +57,7 @@ public class Timer : MonoBehaviour
 
     public void ResetPointsTime()
     {
-        pointsTime = 0;
+        saveTime.pointsTime = 0;
     }
 
     // Остановить отсчет времени
@@ -58,16 +69,17 @@ public class Timer : MonoBehaviour
     // Сбросить секундомер
     public void ResetStopwatch()
     {
-        if (elapsedTime < bestTime && bestTime != 0f)
+        if (saveTime.elapsedTime < saveTime.bestTime && saveTime.bestTime != 0f)
         {
-            bestTime = elapsedTime;
+            saveTime.bestTime = saveTime.elapsedTime;
         }
-        else if (bestTime == 0f)
+        else if (saveTime.bestTime == 0f)
         {
-            bestTime = elapsedTime;
+            saveTime.bestTime = saveTime.elapsedTime;
         }
 
-        Debug.Log($"<color=green>Best Time</color> {bestTime}");
-        elapsedTime = 0f;
+        Debug.Log($"<color=green>Best Time</color> {saveTime.bestTime}");
+		bestTimeTMPro.text = "Время лучшего круга: " + saveTime.bestTime.ToString("F2") + "секунд";
+		saveTime.elapsedTime = 0f;
     }
 }

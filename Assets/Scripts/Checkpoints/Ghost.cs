@@ -12,7 +12,7 @@ public class Ghost : ScriptableObject
     public List<Vector3> position;
     public List<Vector3> rotation;
 
-    public void ResetData()
+	public void ResetData()
     {
         timeSlap.Clear();
         position.Clear();
