@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ee1cb7bd0cde94397be659ceb05208, type: 3}
   m_Name: SaveTime
   m_EditorClassIdentifier: 
-  pointTime: 0
-  elapsedTime: 0
-  bestTime: 0
+  pointsTime: 0
+  elapsedTime: 2.4558012
+  bestTime: 8.215486

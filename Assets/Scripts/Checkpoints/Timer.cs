@@ -13,10 +13,13 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI bestTimeTMPro;
     public TextMeshProUGUI pointTimeTMPro;
 
+    public GhostRecorder recorder;
+
 	private void Awake()
 	{
+        recorder = FindObjectOfType<GhostRecorder>();
         saveTime.ResetData();
-		bestTimeTMPro.text = "Время лучшего круга: " + saveTime.bestTime.ToString("F2") + "секунд";
+		//bestTimeTMPro.text = "Время лучшего круга: " + saveTime.bestTime.ToString("F2") + "секунд";
 	}
 
 	void Update()
@@ -31,11 +34,11 @@ public class Timer : MonoBehaviour
             saveTime.pointsTime += Time.deltaTime;
         }
 
-        Debug.Log("Point Time: " + saveTime.pointsTime.ToString("F2") + "seconds");
+        // Debug.Log("Point Time: " + saveTime.pointsTime.ToString("F2") + "seconds");
         pointTimeTMPro.text = "Время между чекпоинтами: " + saveTime.pointsTime.ToString("F2") + "секунд";
 
 		// Отображение времени
-		Debug.Log("Elapsed Time: " + saveTime.elapsedTime.ToString("F2") + " seconds");
+		// Debug.Log("Elapsed Time: " + saveTime.elapsedTime.ToString("F2") + " seconds");
 		elapsedTimeTMPro.text = "Время круга: " + saveTime.elapsedTime.ToString("F2") + "секунд";
 	}
 
@@ -69,16 +72,19 @@ public class Timer : MonoBehaviour
     // Сбросить секундомер
     public void ResetStopwatch()
     {
-        if (saveTime.elapsedTime < saveTime.bestTime && saveTime.bestTime != 0f)
+        if (saveTime.elapsedTime < saveTime.bestTime)
         {
+            recorder.RecordBest();
             saveTime.bestTime = saveTime.elapsedTime;
+            
         }
         else if (saveTime.bestTime == 0f)
         {
+            recorder.RecordBest();
             saveTime.bestTime = saveTime.elapsedTime;
         }
 
-        Debug.Log($"<color=green>Best Time</color> {saveTime.bestTime}");
+        // Debug.Log($"<color=green>Best Time</color> {saveTime.bestTime}");
 		bestTimeTMPro.text = "Время лучшего круга: " + saveTime.bestTime.ToString("F2") + "секунд";
 		saveTime.elapsedTime = 0f;
     }

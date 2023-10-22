@@ -9,18 +9,19 @@ public class GhostPlayer : MonoBehaviour
     private float timeValue;
     private int index1;
     private int index2;
+    public bool isReplay = false;
 
     private void Awake()
     {
         timeValue = 0;
-	}
+    }
 
 
     // Update is called once per frame
     void Update()
     {
         timeValue += Time.unscaledDeltaTime;
-        if (ghost.isReplay)
+        if (isReplay)
         {
             GetIndex();
             SetTransform();
@@ -61,7 +62,8 @@ public class GhostPlayer : MonoBehaviour
             float interpolationFactor =
                 (timeValue - ghost.timeSlap2[index1]) / (ghost.timeSlap2[index2] - ghost.timeSlap2[index1]);
 
-            this.transform.position = Vector3.Lerp(ghost.position2[index1], ghost.position2[index2], interpolationFactor);
+            this.transform.position =
+                Vector3.Lerp(ghost.position2[index1], ghost.position2[index2], interpolationFactor);
             this.transform.eulerAngles =
                 Vector3.Lerp(ghost.rotation2[index1], ghost.rotation2[index2], interpolationFactor);
         }

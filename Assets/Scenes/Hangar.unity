@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.8655002, g: 0.84668577, b: 0.8390847, a: 1}
+  m_IndirectSpecularColor: {r: 0.86549383, g: 0.84668094, b: 0.8390818, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1849,6 +1849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost: {fileID: 11400000, guid: 25f1efde7cce3074c9fec75055427734, type: 2}
+  isReplay: 1
 --- !u!1001 &313031226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3544,6 +3545,7 @@ MonoBehaviour:
   elapsedTimeTMPro: {fileID: 1961327527}
   bestTimeTMPro: {fileID: 936679479}
   pointTimeTMPro: {fileID: 1350536438}
+  recorder: {fileID: 0}
 --- !u!4 &650226960
 Transform:
   m_ObjectHideFlags: 0
@@ -8114,7 +8116,6 @@ MonoBehaviour:
   currentCheckpointIndex: 0
   checkpoints: []
   timer: {fileID: 0}
-  save: {fileID: 0}
   panel: {fileID: 902111995}
 --- !u!1 &1591837483
 GameObject:
@@ -11919,6 +11920,7 @@ MonoBehaviour:
   ghost: {fileID: 11400000, guid: 25f1efde7cce3074c9fec75055427734, type: 2}
   timer: 0
   timeValue: 0
+  saveTime: {fileID: 0}
 --- !u!33 &5307242011899349221
 MeshFilter:
   m_ObjectHideFlags: 0

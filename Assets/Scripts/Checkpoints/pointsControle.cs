@@ -12,18 +12,17 @@ public class pointsControle : MonoBehaviour
     public int currentCheckpointIndex = 0;
     public List<Transform> checkpoints;
     public Timer timer;
-    public Save save;
-
     public GameObject panel;
+
+    
 
     void Start()
     {
-        save = FindObjectOfType<Save>();
+        
         timer = FindObjectOfType<Timer>();
-        timer.StratPointsTime();
         if (PlayerPrefs.HasKey("SavedFloat"))
         {
-            save.LoadGame();
+            // save.LoadGame();
         }
         foreach (Transform children in checkpointHolder)
         {
@@ -40,10 +39,10 @@ public class pointsControle : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        save.SaveGame();
+        // save.SaveGame();
     }
 
-    public void NextPoint()
+    public void NextPoint() 
     {
         timer.ResetPointsTime();
         if (currentCheckpointIndex == 0)
@@ -57,9 +56,11 @@ public class pointsControle : MonoBehaviour
 		}
         else
         {
-            panel.SetActive(true);
-			Time.timeScale = 0;
-		}
+   //          panel.SetActive(true);
+			// Time.timeScale = 0;
+            timer.ResetStopwatch();
+            SceneManager.LoadScene("Hangar");
+        }
         
     }
 
