@@ -13,6 +13,7 @@ public class pointsControle : MonoBehaviour
     public List<Transform> checkpoints;
     public Timer timer;
     public GameObject panel;
+    public MenuController mainCamera;
 
     
 
@@ -35,6 +36,7 @@ public class pointsControle : MonoBehaviour
             child.gameObject.SetActive(false);
         }
         checkpoints[0].gameObject.SetActive(true);
+        
     }
 
     private void OnApplicationQuit()
@@ -56,12 +58,18 @@ public class pointsControle : MonoBehaviour
 		}
         else
         {
-            panel.SetActive(true);
+            //mainCamera.openMenu();
+            //panel.SetActive(true);
 			timer.ResetStopwatch();
-			Time.timeScale = 0;
+			//Time.timeScale = 0;
             //SceneManager.LoadScene("Hangar");
         }
         
+    }
+
+    public void GetCurrentCheckPoint()
+    {
+
     }
 
     public void RestartScene()

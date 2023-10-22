@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Hangar.unity
-    guid: 3f49d6bbbf64e404a9bce562802e0562
+    path: Assets/Scenes/nddd.unity
+    guid: 215715559dd1d774788f9cc7f9c301a4
+  - enabled: 1
+    path: Assets/Scenes/Hangar_pasha.unity
+    guid: 4279d30bcde3ba643a175d2eaeff96fb
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 60e6351e565423d4299ed0a95acd5974,
       type: 2}

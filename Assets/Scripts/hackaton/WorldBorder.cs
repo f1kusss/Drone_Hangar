@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class WorldBorder : MonoBehaviour
 {
-    [SerializeField] private GameObject _spawnpoint;
+    [SerializeField] private Transform _spawnpoint;
     [SerializeField] private GameObject _fade;
     [SerializeField] private float _fadeDuration = 1.5f;
     [SerializeField] private GameObject _player;
-    private Image _fadeImg;
+	[SerializeField] private pointsControle checkpointController;
+	private Image _fadeImg;
+	
 
-    void Start()
+	void Start()
     {
         Debug.Log("123");
         _fadeImg = _fade.GetComponent<Image>(); 
@@ -42,7 +44,8 @@ public class WorldBorder : MonoBehaviour
 
     private void TeleportPlayer()
     {
-        _player.transform.position = _spawnpoint.transform.position;
+        _spawnpoint = checkpointController.transform.GetChild(checkpointController.currentCheckpointIndex) as Transform;
+        _player.transform.position = _spawnpoint.position;
 
     }
 
