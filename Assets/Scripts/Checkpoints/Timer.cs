@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
 	{
         recorder = FindObjectOfType<GhostRecorder>();
         saveTime.ResetData();
-		//bestTimeTMPro.text = "Время лучшего круга: " + saveTime.bestTime.ToString("F2") + "секунд";
+		bestTimeTMPro.text = "Время лучшего круга: " + saveTime.bestTime.ToString("F2") + "секунд";
 	}
 
 	void Update()
@@ -27,7 +27,8 @@ public class Timer : MonoBehaviour
         if (isRunning)
         {
             saveTime.elapsedTime += Time.deltaTime;
-        }
+			saveTime.pointsTime += Time.deltaTime;
+		}
 
         if (isRunningPoints)
         {

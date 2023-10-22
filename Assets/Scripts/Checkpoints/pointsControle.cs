@@ -22,7 +22,7 @@ public class pointsControle : MonoBehaviour
         timer = FindObjectOfType<Timer>();
         if (PlayerPrefs.HasKey("SavedFloat"))
         {
-            // save.LoadGame();
+            //save.LoadGame();
         }
         foreach (Transform children in checkpointHolder)
         {
@@ -39,7 +39,7 @@ public class pointsControle : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        // save.SaveGame();
+        //save.SaveGame();
     }
 
     public void NextPoint() 
@@ -56,17 +56,17 @@ public class pointsControle : MonoBehaviour
 		}
         else
         {
-   //          panel.SetActive(true);
-			// Time.timeScale = 0;
-            timer.ResetStopwatch();
-            SceneManager.LoadScene("Hangar");
+            panel.SetActive(true);
+			timer.ResetStopwatch();
+			Time.timeScale = 0;
+            //SceneManager.LoadScene("Hangar");
         }
         
     }
 
     public void RestartScene()
     {
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		SceneManager.LoadScene("Hangar");
 		panel.SetActive(false);
 		Time.timeScale = 1;
 	}
