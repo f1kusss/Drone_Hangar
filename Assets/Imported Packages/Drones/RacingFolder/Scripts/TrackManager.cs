@@ -5,8 +5,7 @@ public class TrackManager : MonoBehaviour
 {
 
     private int waypointCounter;
-    [Tooltip("Array of our waypoints, they get dynamically added and you can re-position them in order if something goes wrong.(Probably will not)")]
-    public Transform[] waypointArray; //put them here in order you wish to circuit or click on a button
+    public Transform[] waypointArray
 
     private void Awake()
     {
@@ -16,7 +15,7 @@ public class TrackManager : MonoBehaviour
     }
     private void Start()
     {
-        FindWayPoints(); //finds allwaypoints if the inital list is 0, must be childed to this manager
+        FindWayPoints();
         DisableTriggers();
     }
 
@@ -64,7 +63,6 @@ public class TrackManager : MonoBehaviour
     public Color activeWaypointColor;
     void ActivateNextWayPoint()
     {
-        //finding child objects
         Transform neonPipes = waypointArray[waypointCounter].Find("NeonPipes");
         Transform detectorsChild = waypointArray[waypointCounter].Find("Detector");
         Transform lights = waypointArray[waypointCounter].Find("lights");
