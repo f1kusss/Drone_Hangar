@@ -56,18 +56,12 @@ public class TrackManager : MonoBehaviour
         ActivateNextWayPoint();
     }
 
-    [Tooltip("Color of waypoints that will be emmitting when they are not the next in the row to be passed through.")]
+    [Tooltip("Цвет неактивного.")]
     public Color inactiveWaypointColor;
-    [Tooltip("Color of single next waypoint that is second to come.")]
+    [Tooltip("Цвет следующего.")]
     public Color nextWaypointColor;
-    [Tooltip("Color of current waypoint we need to pass through.")]
+    [Tooltip("Цвет активного")]
     public Color activeWaypointColor;
-    [Tooltip("Range of light emitting from waypoints.")]
-    [Range(0, 20)]
-    public float lightRange = 10;
-    [Tooltip("Volume of sound effect when passing through waypoint.")]
-    [Range(0.0f, 1.0f)]
-    public float waypointSound = 0.2f;
     void ActivateNextWayPoint()
     {
         //finding child objects
@@ -75,21 +69,16 @@ public class TrackManager : MonoBehaviour
         Transform detectorsChild = waypointArray[waypointCounter].Find("Detector");
         Transform lights = waypointArray[waypointCounter].Find("lights");
 
-        //activate trigger
         detectorsChild.gameObject.SetActive(true);
 
-        //paint current waypoint gate
         MeshRenderer meshRenderer_NeonPipes = neonPipes.GetComponent<MeshRenderer>();
         meshRenderer_NeonPipes.materials[0].SetColor("_Color", activeWaypointColor);
         meshRenderer_NeonPipes.materials[0].SetColor("_EmissionColor", activeWaypointColor);
-        //paint lights
         foreach (Transform lightChild in lights)
         {
             lightChild.GetComponent<Light>().color = activeWaypointColor;
         }
 
-
-        //actiavte seoncd waypoint and paint
         ActivateSecondNextWayPoint();
     }
 
@@ -118,44 +107,6 @@ public class TrackManager : MonoBehaviour
         }
     }
 
-    /*DONT USE THIS!
-    public AudioClip blipSound;
-    public bool goOnce = false;
-    public void AddSound()
-    {
-        if(goOnce == false)
-        foreach (Transform t in waypointArray)
-        {
-
-            if (t.Find("sound"))
-                print("gggggg");
-            else
-            {
-                if (blipSound)
-                {
-                    GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    DestroyImmediate(go.GetComponent<MeshFilter>());
-                    DestroyImmediate(go.GetComponent<BoxCollider>());
-                    DestroyImmediate(go.GetComponent<MeshRenderer>());
-                    go.AddComponent<AudioSource>();
-                    go.GetComponent<AudioSource>().clip = blipSound;
-                        go.GetComponent<AudioSource>().playOnAwake = false;
-                        go.GetComponent<AudioSource>().spatialBlend = 1.0f;
-                        go.GetComponent<AudioSource>().volume = 0.1f;
-                    go.name = "sound";
-                    go.transform.SetParent(t);
-                    go.transform.localPosition = Vector3.zero;
-                    go.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                }
-                else
-                    print("no sound");
-
-            }
-        }
-        goOnce = true;
-    }
-    */
-
     void ActivateSecondNextWayPoint()
     {
         int secondNextWayPoint = 0;
@@ -168,15 +119,15 @@ public class TrackManager : MonoBehaviour
             secondNextWayPoint = waypointCounter + 1;
         }
 
-        //finding child objects
+        
         Transform neonPipes = waypointArray[secondNextWayPoint].Find("NeonPipes");
         Transform detectorsChild = waypointArray[secondNextWayPoint].Find("Detector");
         Transform lights = waypointArray[secondNextWayPoint].Find("lights");
 
-        //deactivate trigger
+        
         detectorsChild.gameObject.SetActive(false);
 
-        //paint current waypoint gate
+        
         MeshRenderer meshRenderer_NeonPipes = neonPipes.GetComponent<MeshRenderer>();
         meshRenderer_NeonPipes.materials[0].SetColor("_Color", nextWaypointColor);
         meshRenderer_NeonPipes.materials[0].SetColor("_EmissionColor", nextWaypointColor);
